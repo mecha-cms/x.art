@@ -1,2 +1,9 @@
-# x.art
-Create unique design for each blog posts by adding special CSS and JavaScript files.
+Art Direction Extension for [Mecha](https://github.com/mecha-cms/mecha)
+=======================================================================
+
+Release Notes
+-------------
+
+### 2.0.0
+
+ - Moved from the core to a separate extension.
