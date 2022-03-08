@@ -2,7 +2,10 @@
 
 namespace x {
     function art($content) {
-        extract($GLOBALS, \EXTR_SKIP);
+        if (empty($content)) {
+            return $content;
+        }
+        \extract($GLOBALS, \EXTR_SKIP);
         if (empty($page)) {
             return $content;
         }
@@ -16,22 +19,22 @@ namespace x {
 
 namespace x\art {
     function css($content) {
-        $content = \trim($content);
+        $content = \trim($content ?? "");
         if ($content && false === \strpos($content, '</style>') && false === \strpos($content, '<link ')) {
             return '<style media="screen">' . $content . '</style>';
         }
         return $content;
     }
     function js($content) {
-        $content = \trim($content);
+        $content = \trim($content ?? "");
         if ($content && false === \strpos($content, '</script>') && false === \strpos($content, '<script ')) {
             return '<script>' . $content . '</script>';
         }
         return $content;
     }
-    function route($path) {
-        extract($GLOBALS, \EXTR_SKIP);
-        $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->path, '/');
+    function route($content, $path) {
+        \extract($GLOBALS, \EXTR_SKIP);
+        $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->route, '/');
         if ($file = \exist([
             $folder . '.archive',
             $folder . '.page'
@@ -49,6 +52,7 @@ namespace x\art {
             ]);
         }
     }
+    // Temporarily disable art page by adding query string `?art=false` in URL
     if (!\array_key_exists('art', $_GET) || !empty($_GET['art'])) {
         \Hook::set('content', __NAMESPACE__, 1);
         \Hook::set('page.css', __NAMESPACE__ . "\\css", 2);
