@@ -1,0 +1,8 @@
+{
+  "description": "Create unique design for each blog posts by adding special CSS and JavaScript files.",
+  "license": "GPL-3.0-or-later",
+  "name": "mecha-cms/x.art",
+  "require": {
+    "mecha-cms/x.page": "^2.0.0"
+  }
+}
