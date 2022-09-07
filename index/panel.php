@@ -3,7 +3,7 @@
 // Disable art page when in panel
 Hook::let('content', "x\\art");
 
-Hook::set('_', function($_) {
+Hook::set('_', function ($_) {
     if (0 === strpos($_['type'] . '/', 'page/page/') && !empty($_['lot']['desk']['lot']['form']['lot'][1]['lot']['tabs']['lot'])) {
         extract($GLOBALS, EXTR_SKIP);
         $_['lot']['desk']['lot']['form']['lot'][1]['lot']['tabs']['lot']['art'] = array_replace_recursive([
