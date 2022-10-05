@@ -1,6 +1,6 @@
 <?php
 
-// Disable art page when in panel
+// Disable art page in panel
 Hook::let('content', "x\\art");
 
 Hook::set('_', function ($_) {
