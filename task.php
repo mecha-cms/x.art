@@ -14,7 +14,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_POST['x']['art'])) {
         exit;
     }
     if (1 === $_POST['x']['art']) {
-        foreach ($_POST['filees'] as $v) {
+        foreach ($_POST['files'] as $v) {
             rename($v, dirname($v) . D . ('js' === basename($v, '.data') ? 'script' : 'style') . '.data');
         }
     } else {
