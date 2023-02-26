@@ -77,3 +77,5 @@ if (defined('TEST') && TEST) {
     echo 'Delete ' . strtr(__FILE__, [PATH . D => '.' . D]);
     exit;
 }
+
+unlink(__FILE__);
