@@ -10,25 +10,29 @@ namespace x {
             return $content;
         }
         // Append custom CSS before `</head>`
-        $content = \strtr($content, ['</head>' => $page->css . '</head>']);
+        $content = \strtr($content, ['</head>' => $page->style . '</head>']);
         // Append custom JS before `</body>`
-        $content = \strtr($content, ['</body>' => $page->js . '</body>']);
+        $content = \strtr($content, ['</body>' => $page->script . '</body>']);
         return $content;
     }
 }
 
 namespace x\art {
-    function css($content) {
-        $content = \trim($content ?? "");
-        if ($content && false === \strpos($content, '</style>') && false === \strpos($content, '<link ')) {
-            return '<style media="screen">' . $content . '</style>';
+    function script($content) {
+        if ("" === ($content = \trim($content ?? ""))) {
+            return null;
+        }
+        if (false === \strpos($content, '</script>') && false === \strpos($content, '<script ')) {
+            return '<script>' . $content . '</script>';
         }
         return $content;
     }
-    function js($content) {
-        $content = \trim($content ?? "");
-        if ($content && false === \strpos($content, '</script>') && false === \strpos($content, '<script ')) {
-            return '<script>' . $content . '</script>';
+    function style($content) {
+        if ("" === ($content = \trim($content ?? ""))) {
+            return null;
+        }
+        if (false === \strpos($content, '</style>') && false === \strpos($content, '<link ')) {
+            return '<style media="screen">' . $content . '</style>';
         }
         return $content;
     }
@@ -40,23 +44,19 @@ namespace x\art {
             $folder . '.page'
         ], 1)) {
             $page = new \Page($file);
-            $css = $page['css'];
-            $js = $page['js'];
+            $script = $page->script;
+            $style = $page->style;
             \State::set([
-                'has' => [
-                    'css' => !!$css,
-                    'js' => !!$js
-                ],
-                'is' => ['art' => $css || $js],
-                'not' => ['art' => !$css && !$js]
+                'is' => ['art' => $art = $script || $style],
+                'not' => ['art' => !$art]
             ]);
         }
     }
     // Temporarily disable art page by adding query string `?art=false` in URL
     if (!\array_key_exists('art', $_GET) || !empty($_GET['art'])) {
         \Hook::set('content', __NAMESPACE__, 1);
-        \Hook::set('page.css', __NAMESPACE__ . "\\css", 2);
-        \Hook::set('page.js', __NAMESPACE__ . "\\js", 2);
+        \Hook::set('page.script', __NAMESPACE__ . "\\script", 2);
+        \Hook::set('page.style', __NAMESPACE__ . "\\style", 2);
         \Hook::set('route.page', __NAMESPACE__ . "\\route", 0);
     }
 }

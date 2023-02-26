@@ -10,24 +10,10 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                 'lot' => [
                     'fields' => [
                         'lot' => [
-                            'css' => [
-                                'height' => true,
-                                'hint' => ['%s goes here...', 'CSS'],
-                                'name' => 'data[css]',
-                                'stack' => 10,
-                                'state' => [
-                                    'source' => ['type' => 'CSS'],
-                                    'tab' => '  '
-                                ],
-                                'title' => '<abbr title="Cascading Style Sheet">CSS</abbr>',
-                                'type' => 'source',
-                                'value' => $page['css'],
-                                'width' => true
-                            ],
-                            'js' => [
+                            'script' => [
                                 'height' => true,
                                 'hint' => ['%s goes here...', 'JS'],
-                                'name' => 'data[js]',
+                                'name' => 'data[script]',
                                 'stack' => 20,
                                 'state' => [
                                     'source' => ['type' => 'JavaScript'],
@@ -35,7 +21,21 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                                 ],
                                 'title' => '<abbr title="JavaScript">JS</abbr>',
                                 'type' => 'source',
-                                'value' => $page['js'],
+                                'value' => $page['script'],
+                                'width' => true
+                            ],
+                            'style' => [
+                                'height' => true,
+                                'hint' => ['%s goes here...', 'CSS'],
+                                'name' => 'data[style]',
+                                'stack' => 10,
+                                'state' => [
+                                    'source' => ['type' => 'CSS'],
+                                    'tab' => '  '
+                                ],
+                                'title' => '<abbr title="Cascading Style Sheet">CSS</abbr>',
+                                'type' => 'source',
+                                'value' => $page['style'],
                                 'width' => true
                             ]
                         ],

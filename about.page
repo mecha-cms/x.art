@@ -5,7 +5,7 @@ icon: 'M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5
 color: '#376200'
 author: Taufik Nurrohman
 type: Markdown
-version: 2.0.1
+version: 3.0.0
 
 use:
   '.\lot\x\page': 1
@@ -13,29 +13,23 @@ use:
 
 ### Usage
 
-This extension allows you to give specific styles to individual pages. To enable this feature, add `css.data` and
-`js.data` files to a folder that has the same name as the page slug and is stored in the same directory level. Write
-custom CSS code in `css.data` file, and custom JS code in `js.data` file.
+This extension allows you to give specific styles to individual pages. To enable this feature, add `script.data` and/or
+`style.data` files to a folder that has the same name as the page slug and is stored in the same directory level. Write
+custom CSS code in `style.data` file, and custom JS code in `script.data` file.
 
 ~~~ .txt
 .\
 └── lot\
     └── page\
         ├── lorem-ipsum\
-        │   ├── css.data
-        │   └── js.data
+        │   ├── script.data
+        │   └── style.data
         └── lorem-ipsum.page
 ~~~
 
 These HTML classes will be added to the root element if it has a `class` attribute when the current page has custom CSS
 and/or custom JS data. You can use this feature to create a specific look or response on your site from the client-side
 when the following classes are found in the root element:
-
-`has:css`
-: Will be added if custom CSS data of current page isn’t empty.
-
-`has:js`
-: Will be added if custom JS data of current page isn’t empty.
 
 `is:art`
 : Will be added if custom CSS or JS data of current page isn’t empty.
@@ -61,12 +55,6 @@ if (document.documentElement.classList.contains('is:art')) {
 
 These additional conditional statements are available for use in layouts to show/hide elements on your site from the
 server-side:
-
-`$site->has('css')`
-: Returns `true` if current page has custom CSS.
-
-`$site->has('js')`
-: Return `true` if current page has custom JS.
 
 `$site->is('art')`
 : Returns `true` if current page has custom CSS or JS.
