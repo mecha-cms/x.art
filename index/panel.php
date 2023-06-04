@@ -2,7 +2,7 @@
 
 if ('GET' === $_SERVER['REQUEST_METHOD']) {
     // Disable art page in control panel
-    Hook::let('content', "x\\art");
+    Hook::let('content', "x\\art\\content");
     Hook::set('_', function ($_) {
         if (0 === strpos($_['type'] . '/', 'page/page/') && !empty($_['lot']['desk']['lot']['form']['lot'][1]['lot']['tabs']['lot'])) {
             extract($GLOBALS, EXTR_SKIP);
