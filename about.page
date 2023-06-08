@@ -10,9 +10,9 @@ version: 3.0.0
 
 ### Usage
 
-This extension allows you to give specific styles to individual pages. To enable this feature, add `script.data` and/or
-`style.data` files to a folder that has the same name as the page slug and is stored in the same directory level. Write
-custom CSS code in `style.data` file, and custom JS code in `script.data` file.
+This extension allows you to apply specific styles to individual pages. To enable this feature, add `script.data` and/or
+`style.data` files to a folder with the same name as the page name and on the same directory level. Write custom CSS
+code in the `style.data` file and custom JS code in the `script.data` file:
 
 ~~~ .txt
 .\
@@ -24,15 +24,15 @@ custom CSS code in `style.data` file, and custom JS code in `script.data` file.
         └── lorem-ipsum.page
 ~~~
 
-These HTML classes will be added to the root element if it has a `class` attribute when the current page has custom CSS
-and/or custom JS data. You can use this feature to create a specific look or response on your site from the client-side
-when the following classes are found in the root element:
+These HTML classes are added to the root element if it has a `class` attribute, when the current page has custom CSS
+and/or custom JS data. You can use this feature to create a specific look or response on your site from the client side
+if the following classes are found in the root element:
 
 `is:art`
-: Will be added if custom CSS or JS data of current page isn’t empty.
+: Will be added if custom CSS or JS data of the current page is not empty.
 
 `not:art`
-: Will be added if custom CSS and JS data of current page are empty.
+: Will be added if custom CSS and JS data of the current page is empty.
 
 Example usage in CSS code:
 
@@ -51,13 +51,13 @@ if (document.documentElement.classList.contains('is:art')) {
 ~~~
 
 These additional conditional statements are available for use in layouts to show/hide elements on your site from the
-server-side:
+server side:
 
 `$site->is('art')`
-: Returns `true` if current page has custom CSS or JS.
+: Returns `true` if the current page has custom CSS or JS.
 
 `$site->not('art')`
-: Returns `true` if current page doesn’t have custom CSS and JS.
+: Returns `true` if the current page has no custom CSS and JS.
 
 Example usage in HTML/PHP code:
 

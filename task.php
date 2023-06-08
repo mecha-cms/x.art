@@ -1,7 +1,7 @@
 <?php
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_POST['x']['art'])) {
-    if (defined('TEST') && TEST) {
+    if (defined('TEST') && 'x.art' === TEST) {
         status(200);
         type('text/plain');
         if (1 === $_POST['x']['art']) {
@@ -71,7 +71,7 @@ if ($count = count($files)) {
     exit;
 }
 
-if (defined('TEST') && TEST) {
+if (defined('TEST') && 'x.art' === TEST) {
     status(200);
     type('text/plain');
     echo 'Delete ' . strtr(__FILE__, [PATH . D => '.' . D]);

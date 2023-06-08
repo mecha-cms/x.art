@@ -15,24 +15,24 @@ function content($content) {
     return $content;
 }
 
-function page__script($content) {
-    if ("" === ($content = \trim($content ?? ""))) {
+function page__script($script) {
+    if ("" === ($script = \trim($script ?? ""))) {
         return null;
     }
-    if (false === \strpos($content, '</script>') && false === \strpos($content, '<script ')) {
-        return '<script>' . $content . '</script>';
+    if (false === \strpos($script, '</script>') && false === \strpos($script, '<script ')) {
+        return '<script>' . $script . '</script>';
     }
-    return $content;
+    return $script;
 }
 
-function page__style($content) {
-    if ("" === ($content = \trim($content ?? ""))) {
+function page__style($style) {
+    if ("" === ($style = \trim($style ?? ""))) {
         return null;
     }
-    if (false === \strpos($content, '</style>') && false === \strpos($content, '<link ')) {
-        return '<style media="screen">' . $content . '</style>';
+    if (false === \strpos($style, '</style>') && false === \strpos($style, '<link ')) {
+        return '<style media="screen">' . $style . '</style>';
     }
-    return $content;
+    return $style;
 }
 
 function route__page($content, $path) {

@@ -1,5 +1,5 @@
 {
-  "description": "Creates a unique design on each page by adding custom CSS and JavaScript code.",
+  "description": "Creates a unique design on each page by adding custom CSS and JS code.",
   "license": "GPL-3.0-or-later",
   "name": "mecha-cms/x.art",
   "require": {
