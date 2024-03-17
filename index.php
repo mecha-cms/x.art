@@ -4,7 +4,7 @@ function content($content) {
     if (!$content) {
         return $content;
     }
-    \extract($GLOBALS, \EXTR_SKIP);
+    \extract(\lot(), \EXTR_SKIP);
     if (empty($page)) {
         return $content;
     }
@@ -36,7 +36,7 @@ function page__style($style) {
 }
 
 function route__page($content, $path) {
-    \extract($GLOBALS, \EXTR_SKIP);
+    \extract(\lot(), \EXTR_SKIP);
     $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->route, '/');
     if ($file = \exist([
         $folder . '.archive',

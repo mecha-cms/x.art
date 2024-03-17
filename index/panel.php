@@ -4,7 +4,7 @@ function _($_) {
     if (0 !== \strpos($_['type'] . '/', 'page/page/') || empty($_['lot']['desk']['lot']['form']['lot'][1]['lot']['tabs']['lot'])) {
         return $_;
     }
-    \extract($GLOBALS, \EXTR_SKIP);
+    \extract(\lot(), \EXTR_SKIP);
     $_['lot']['desk']['lot']['form']['lot'][1]['lot']['tabs']['lot']['art'] = \array_replace_recursive([
         'lot' => [
             'fields' => [
