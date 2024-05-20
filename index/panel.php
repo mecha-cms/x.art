@@ -15,8 +15,8 @@ function _($_) {
                         'name' => 'data[script]',
                         'stack' => 20,
                         'state' => [
-                            'source' => ['type' => 'JavaScript'],
-                            'tab' => '    '
+                            'tab' => 4,
+                            'type' => 'text/javascript'
                         ],
                         'title' => '<abbr title="JavaScript">JS</abbr>',
                         'type' => 'source',
@@ -29,8 +29,8 @@ function _($_) {
                         'name' => 'data[style]',
                         'stack' => 10,
                         'state' => [
-                            'source' => ['type' => 'CSS'],
-                            'tab' => '  '
+                            'tab' => 2,
+                            'type' => 'text/css'
                         ],
                         'title' => '<abbr title="Cascading Style Sheet">CSS</abbr>',
                         'type' => 'source',
