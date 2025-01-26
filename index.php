@@ -19,7 +19,13 @@ function page__script($script) {
     if ("" === ($script = \trim($script ?? ""))) {
         return null;
     }
-    if (false === \strpos($script, '</script>') && false === \strpos($script, '<script ')) {
+    if (
+        false === \strpos($script, '</script>') &&
+        false === \strpos($script, '<script ') &&
+        false === \strpos($script, "<script\n") &&
+        false === \strpos($script, "<script\r") &&
+        false === \strpos($script, "<script\t")
+    ) {
         return '<script>' . $script . '</script>';
     }
     return $script;
@@ -29,7 +35,13 @@ function page__style($style) {
     if ("" === ($style = \trim($style ?? ""))) {
         return null;
     }
-    if (false === \strpos($style, '</style>') && false === \strpos($style, '<link ')) {
+    if (
+        false === \strpos($style, '</style>') &&
+        false === \strpos($style, '<link ') &&
+        false === \strpos($style, "<link\n") &&
+        false === \strpos($style, "<link\r") &&
+        false === \strpos($style, "<link\t")
+    ) {
         return '<style media="screen">' . $style . '</style>';
     }
     return $style;
