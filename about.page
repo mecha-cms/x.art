@@ -5,7 +5,7 @@ icon: 'M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5
 color: '#376200'
 author: Taufik Nurrohman
 type: Markdown
-version: 3.0.3
+version: 3.0.4
 ...
 
 ### Usage
@@ -28,16 +28,16 @@ These HTML classes are added to the root element if it has a `class` attribute, 
 and/or custom JS data. You can use this feature to create a specific look or response on your site from the client side
 if the following classes are found in the root element:
 
-`is:art`
+`is-art`
 : Will be added if custom CSS or JS data of the current page is not empty.
 
-`not:art`
+`not-art`
 : Will be added if custom CSS and JS data of the current page is empty.
 
 Example usage in CSS code:
 
 ~~~ .css
-.not\:art a {
+.not-art a {
   color: #00f;
 }
 ~~~
@@ -45,7 +45,7 @@ Example usage in CSS code:
 Example usage in JS code:
 
 ~~~ .js
-if (document.documentElement.classList.contains('is:art')) {
+if (document.documentElement.classList.contains('is-art')) {
     console.info('This page contains custom CSS/JS code.');
 }
 ~~~

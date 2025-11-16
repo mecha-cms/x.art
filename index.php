@@ -1,7 +1,7 @@
 <?php namespace x\art;
 
 function content($content) {
-    if (!$content) {
+    if (!$content || (false === \strpos($content, '</body>') && false === \strpos($content, '</head>'))) {
         return $content;
     }
     \extract(\lot(), \EXTR_SKIP);
@@ -49,7 +49,7 @@ function page__style($style) {
 
 function route__page($content, $path) {
     \extract(\lot(), \EXTR_SKIP);
-    $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->route, '/');
+    $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->route ?? 'index', '/');
     if ($file = \exist([
         $folder . '.archive',
         $folder . '.page'
