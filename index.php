@@ -16,44 +16,28 @@ function content($content) {
 }
 
 function page__script($script) {
-    if ("" === ($script = \trim($script ?? ""))) {
+    if ("" === ($script = \rtrim(\trim($script ?? "", "\n\r")))) {
         return null;
     }
-    if (
-        false === \strpos($script, '</script>') &&
-        false === \strpos($script, '<script ') &&
-        false === \strpos($script, "<script\n") &&
-        false === \strpos($script, "<script\r") &&
-        false === \strpos($script, "<script\t")
-    ) {
-        return '<script>' . $script . '</script>';
+    if (false !== \strpos($script, '</script>') || (false !== ($n = \strpos($script, '<script')) && \strspn($script, " \n\r\t", $n + 7))) {
+        return $script;
     }
-    return $script;
+    return '<script>' . $script . '</script>';
 }
 
 function page__style($style) {
-    if ("" === ($style = \trim($style ?? ""))) {
+    if ("" === ($style = \rtrim(\trim($style ?? "", "\n\r")))) {
         return null;
     }
-    if (
-        false === \strpos($style, '</style>') &&
-        false === \strpos($style, '<link ') &&
-        false === \strpos($style, "<link\n") &&
-        false === \strpos($style, "<link\r") &&
-        false === \strpos($style, "<link\t")
-    ) {
-        return '<style media="screen">' . $style . '</style>';
+    if (false !== \strpos($style, '</style>') || (false !== ($n = \strpos($style, '<link')) && \strspn($style, " \n\r\t", $n + 5))) {
+        return $style;
     }
-    return $style;
+    return '<style media="screen">' . $style . '</style>';
 }
 
 function route__page($content, $path) {
     \extract(\lot(), \EXTR_SKIP);
-    $folder = \LOT . \D . 'page' . \D . \trim($path ?? $state->route ?? 'index', '/');
-    if ($file = \exist([
-        $folder . '.archive',
-        $folder . '.page'
-    ], 1)) {
+    if ($file = \exist(\LOT . \D . 'page' . \D . \trim($path ?? $state->route ?? 'index', '/') . '.{' . \x\page\x() . '}', 1)) {
         $page = new \Page($file);
         $script = $page->script;
         $style = $page->style;
