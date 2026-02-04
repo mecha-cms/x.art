@@ -1,7 +1,7 @@
 <?php
 
-// Self-delete after one month…
-if (filemtime(__FILE__) < strtotime('-1 month')) {
+// Self-delete after one year…
+if (filemtime(__FILE__) < strtotime('-1 year')) {
     unlink(__FILE__);
     return;
 }
