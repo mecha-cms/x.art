@@ -48,7 +48,7 @@ function route__page($content, $path) {
     }
 }
 
-// Temporarily disable art page by adding query string `?art=false` in URL
+// Temporarily disable art page by adding query string `?art=false` in link
 if (!\array_key_exists('art', $_GET) || !empty($_GET['art'])) {
     \Hook::set('content', __NAMESPACE__ . "\\content", 1);
     \Hook::set('page.script', __NAMESPACE__ . "\\page__script", 2);
