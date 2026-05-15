@@ -7,8 +7,7 @@ if (filemtime(__FILE__) < strtotime('-1 year')) {
 }
 
 Hook::set('route.page', function ($content, $path) use ($state) {
-    $route = trim($path ?? $state->route ?? 'index', '/');
-    if ($f = exist(LOT . D . 'page' . D . $route . D . '{css,js,script,style}.data')) {
+    if ($f = exist(LOT . D . 'page' . D . rawurldecode(trim($path ?? $state->home ?? 'index', '/')) . D . '{css,js,script,style}.data')) {
         if (!is_dir($d = dirname($f) . D . '+') && !mkdir($d, 0700, true) && !is_dir($d)) {
             throw new RuntimeException('Failed to create folder: `' . $d . '`');
         }

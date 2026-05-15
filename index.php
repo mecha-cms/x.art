@@ -37,7 +37,7 @@ function page__style($style) {
 
 function route__page($content, $path) {
     \extract(\lot(), \EXTR_SKIP);
-    if ($file = \exist(\LOT . \D . 'page' . \D . \trim($path ?? $state->route ?? 'index', '/') . '.{' . \x\page\x() . '}', 1)) {
+    if ($file = \exist(\LOT . \D . 'page' . \D . \rawurldecode(\trim($path ?? $state->home ?? 'index', '/')) . '.{' . \x\page\x() . '}', 1)) {
         $page = new \Page($file);
         $script = $page->script;
         $style = $page->style;
